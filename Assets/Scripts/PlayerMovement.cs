@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
 
     [Space(20)]
-    [SerializeField] private Transform playerHead;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private Animator animator;
     [SerializeField] private Vector3 movingDirection;
     private float directionX;
     private float directionY;
@@ -29,8 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private void LoadComponents()
     {
         rb = GetComponent<Rigidbody>();
-
-        playerHead = transform.Find("Sphere");
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -48,12 +47,19 @@ public class PlayerMovement : MonoBehaviour
         directionX = Input.GetAxis("Horizontal");
         directionY = Input.GetAxis("Vertical");
 
-        movingDirection = playerHead.transform.forward * directionY + playerHead.transform.right * directionX;
+        movingDirection = transform.forward * directionY + transform.right * directionX;
         movingDirection.Normalize();
     }
 
     private void Move()
     {
+        if (directionX == 0 && directionY == 0)
+        {
+            animator.SetBool("Run", false);
+            return;
+        }
+
         rb.MovePosition(transform.position + movingDirection * moveSpeed * Time.fixedDeltaTime);
+        animator.SetBool("Run", true);
     }
 }

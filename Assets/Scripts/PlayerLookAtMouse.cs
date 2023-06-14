@@ -8,7 +8,7 @@ public class PlayerLookAtMouse : MonoBehaviour
     #region private
     [SerializeField] private float rotationSpeed;
     [SerializeField] private Transform playerHead;
-    [SerializeField] private Transform fakeGun;
+    [SerializeField] private Transform weaponHolder;
     private float mouseX;
     private float mouseY;
     #endregion
@@ -26,7 +26,7 @@ public class PlayerLookAtMouse : MonoBehaviour
     private void LoadComponents()
     {
         playerHead = transform.Find("Sphere");
-        fakeGun = transform.Find("FakeGun");
+        weaponHolder = transform.Find("WeaponHolder");
 
         TurnOffCursor();
     }
@@ -69,11 +69,12 @@ public class PlayerLookAtMouse : MonoBehaviour
 
     private static void TurnOffCursor()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     private void SetGunDirection(Vector3 rotation)
     {
-        fakeGun.eulerAngles = new Vector3(rotation.x + 90, rotation.y, 0);
+        weaponHolder.eulerAngles = new Vector3(rotation.x, rotation.y, 0);
     }
 }
