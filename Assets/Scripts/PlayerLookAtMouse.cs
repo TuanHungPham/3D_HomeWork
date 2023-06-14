@@ -9,6 +9,7 @@ public class PlayerLookAtMouse : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private Transform playerHead;
     [SerializeField] private Transform weaponHolder;
+
     private float mouseX;
     private float mouseY;
     #endregion
