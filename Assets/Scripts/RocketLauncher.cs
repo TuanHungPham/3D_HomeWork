@@ -77,6 +77,8 @@ public class RocketLauncher : MonoBehaviour
     {
         if ((timeLastFired + shotDelay) > Time.time) return;
 
+        Debug.Log("Shoot...");
+
         // --- Keep track of when the weapon is being fired ---
         timeLastFired = Time.time;
 

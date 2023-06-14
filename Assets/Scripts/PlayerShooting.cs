@@ -36,6 +36,7 @@ public class PlayerShooting : MonoBehaviour
 
         animator.SetBool("Fire", true);
         EventManager.EmitEvent("PlayerShooting");
+        Debug.Log("Send PlayerShooting Event!!!");
     }
 
     private bool CanShoot()
