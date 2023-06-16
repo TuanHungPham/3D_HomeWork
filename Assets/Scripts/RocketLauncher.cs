@@ -19,6 +19,7 @@ public class RocketLauncher : MonoBehaviour
     public float shotDelay = .5f;
     public bool rotate = false;
     public float rotationSpeed = .25f;
+    public int ammo;
 
     // --- Options ---
     public GameObject scope;
@@ -41,6 +42,7 @@ public class RocketLauncher : MonoBehaviour
         if (source != null) source.clip = GunShotClip;
         timeLastFired = 0;
         lastScopeState = scopeActive;
+        ammo = 10;
 
         EventManager.StartListening("PlayerShooting", FireWeapon);
     }
@@ -77,7 +79,7 @@ public class RocketLauncher : MonoBehaviour
     {
         if ((timeLastFired + shotDelay) > Time.time) return;
 
-        Debug.Log("Shoot...");
+        ammo--;
 
         // --- Keep track of when the weapon is being fired ---
         timeLastFired = Time.time;

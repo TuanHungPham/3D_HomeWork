@@ -6,6 +6,7 @@ public class PlayerShooting : MonoBehaviour
     private const int LEFT_MOUSE_BUTTON = 0;
     private Animator animator;
 
+
     private void Awake()
     {
         LoadComponents();
